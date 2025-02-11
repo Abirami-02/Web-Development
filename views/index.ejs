@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main page</title>
+    <link rel="stylesheet" href="/DBstyle.css">
+</head>
+<body>
+    <% if (users!="") {%>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sno</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users. forEach((user,index) => {%>
+                 <tr>
+                    <td><%= index+1 %></td>
+                    <td><%= user.name %></td>
+                    <td><%= user.email %></td>
+                    <td class="action-buttons">
+                        <form action="/edit/<%= user._id %>" method="get">
+                            <button class="update-btn">Update</button>
+                        </form>
+                        <form action="/delete/<%= user._id %>" method="get">
+                            <button class="delete-btn">Delete</button>
+                        </form>
+                    </td>
+                 </tr>
+                <%})%>
+            </tbody>
+        </table>
+       
+    <%}else{%>
+        <h1>NO USER FOUND</h1>
+        <%}%>    
+</body>
+</html>
